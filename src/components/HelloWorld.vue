@@ -1,40 +1,55 @@
-<script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String
-})
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="hello">
+  <p>{{name}}</p>
+  <p>{{tel}}</p>
+  <p>{{email}}</p>
+  <p>{{age}}</p>
+  
+  <input v-model="name" placeholder="name" />
+  <input v-model="tel" placeholder="tel" />
+  <input v-model="email" placeholder="email" />
+  <input v-model="age" placeholder="age" />
 
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <img :src="previewImage" class="uploading-image" />
+  <input type="file" accept="image/jpeg" @change=uploadImage>
+  
+    
+  </div>
 </template>
 
-<style scoped>
-a {
-  color: #42b983;
+<script>
+export default {
+  img:'imageUpload',
+  data(){
+    return({
+      name: '',
+      tel: '',
+      email: '',
+      age: '',
+      previewImage:null
+    })
+    
+  },
+   methods:{
+            uploadImage(e){
+                const image = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e =>{
+                    this.previewImage = e.target.result;
+                    console.log(this.previewImage);
+                };
+            }
+        },  
+  props: {
+    msg: String
+  }
 }
-</style>
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped> 
+   .uploading-image{
+     display:flex;
+   }
+ </style>
