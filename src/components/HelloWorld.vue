@@ -36,7 +36,7 @@
          <img :src="previewImage" class="uploading-image sm:flex-shrink-0 mx-auto sm:mx-0 h-24 rounded-full" />
       <input type="file" accept="image/jpeg" @change=uploadImage>
         <img src="../assets/logo.png" alt="Foto de uma pessoa" class="sm:flex-shrink-0 mx-auto sm:mx-0 h-24 rounded-full">
-        <div class="sm:flex sm:items-center">
+        <div class="sm:flex sm:items-center"> 
           
           <div class="sm:ml-4 sm:text-left text-center">
             <p class="text-xl">{{name}}</p>
