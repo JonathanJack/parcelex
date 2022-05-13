@@ -6,7 +6,6 @@
         <div class="lg:w-3/4 sm:h-full">
           <h1 class="text-white text-center  title">Crie seu crachá</h1>
           <p class="text-center text-blue-200 subtitle">Em poucos dias você o receberá em casa</p>
-
           <form action="" class="  h-16 sm:h-11  mt-8">
           <input v-model="name" placeholder="Nome" type="text" class="input w-full">
           <input v-model="tel" placeholder="Telefone" type="number" class="input w-full">
@@ -27,10 +26,7 @@
         </div>        
       </div>
 
-
-
       <div class="lg:min-h-screen max-h-screen flex items-center py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200">
-
         <div class="card">
           <div class="flex justify-center relative">
             <img v-if="!previewImage" class="avatar" src="../assets/avatar.png"/> 
@@ -47,16 +43,10 @@
               <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
               <p class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
               <p class="card-row card-info"><b>Email: </b>{{Email}}</p>
-              <p class="card-row card-info"><b>Idade: </b>{{idade}}</p>
-              <div class="flex justify-between">
-                <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>    
-                   
-              </div>
+              <p class="card-row card-info"><b>Idade: </b>{{idade}}</p>              
+              <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>                                     
             </div>            
-          </div>
-          <div class="flex justify-end">
-              
-            </div>          
+          </div>  
         </div>
       </div>
     </div>
@@ -88,12 +78,7 @@ export default {
       ]
     })
     
-  },
-  created(){
-    // if(this.setor == this.setores.id){
-    //   this.setorName = this.setores.setor;
-    // }
-  },
+  }, 
    methods:{
             uploadImage(e){
               console.log(this.setorName);
@@ -118,9 +103,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped> 
-   .uploading-image{
-     display:flex;
-   }
+
  </style>
