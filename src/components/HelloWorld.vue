@@ -13,8 +13,8 @@
     <img :src="previewImage" class="uploading-image" />
     <input type="file" accept="image/jpeg" @change=uploadImage> -->
 
-    <div class="grid grid-cols-1 lg:grid-cols-2">
-      <div class="bg-blue-600 lg:min-h-screen lg:flex  p-8 sm:p-12 justify-center" >
+    <div class="grid grid-cols-1 lg:grid-cols-2 ">
+      <div class="bg-blue-600 lg:min-h-screen lg:flex  p-8 sm:p-12 justify-center max-h-screen" >
         <div class="w-3/4">
           <h1 class="text-white text-center text-2xl sm:text-5xl mb-2">Crie seu crachá</h1>
           <p class="text-center text-blue-200 sm:text-lg">Em poucos dias você o receberá em casa</p>
@@ -23,41 +23,61 @@
           <input v-model="name" placeholder="Nome" type="text" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
           <input v-model="tel" placeholder="Telefone" type="number" class="flex-1 h-11 w-full text-center my-4 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
           <input v-model="Email" placeholder="Email" type="text" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
-          <input v-model="idade" placeholder="idade" type="number" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
-          <input v-model="setor" placeholder="Identificação do Setor" type="text" class="flex-1 h-11 w-full text-center my-4 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
+          <input v-model="idade" placeholder="idade" type="number" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">          
+          <div class="flex justify-between">
+            <select v-model="sectorSelected" class="w-1/2 h-11 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">            
+              <option v-for="sector in sectors">
+                {{sector.name}}
+              </option>
+            </select>          
+            <!-- <input id="fileUpload" type="file" accept="image/jpeg" @change=uploadImage >
+            
+            <button v-on:click="chooseFiles()" class="h-10 text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
+              font-semibold rounded-md text-xs px-4 py-1 focus:outline-none"
+              >Pronto!</button> -->
 
-          <!-- <button class="flex-shrink-0"></button> -->
+              <label for="upload-file" class="h-10 flex text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
+              font-semibold rounded-md text-xs px-4 align-middle">
+                Escolha sua foto!
+                <input type="file" id="upload-file" hidden @change="uploadImage"/>
+              </label>
+          </div>
+
+          
         </form>
+        <!-- <button v-on:click="teste" class="h-10 text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
+              font-semibold rounded-md text-xs px-4 py-1 focus:outline-none"
+              >Pronto!</button>  -->
         </div>        
       </div>
 
-      <div class="lg:min-h-screen lg:flex lg:items-center p-12 lg:p-24 xl:p-48">
-      <div class="flex-grow bg-white shadow-xl rounded-md border border-gray-300 p-8">
-         <img :src="previewImage" class="uploading-image sm:flex-shrink-0 mx-auto sm:mx-0 h-24 rounded-full" />
-      <input type="file" accept="image/jpeg" @change=uploadImage>
-        <img src="../assets/logo.png" alt="Foto de uma pessoa" class="sm:flex-shrink-0 mx-auto sm:mx-0 h-24 rounded-full">
-        <div class="sm:flex sm:items-center"> 
-          
-          <div class="sm:ml-4 sm:text-left text-center">
-            <p class="text-xl">{{name}}</p>
-            <!-- <p class="text-sm text-gray-600">Um belo de um bom funcionario</p> -->
-            <p>{{tel}}</p>
-            <p>{{Email}}</p>
-            <p>{{idade}}</p>
-            <p>{{setor}}</p>
-            <div class="mt-">
-              <button class="text-red-500 hover:text-white hover:bg-red-500 border-red-500 
-              font-semibold rounded-md text-xs px-4 py-1 focus:outline-none"
-              >Não é fulaninho?</button>              
-            </div>
+      <div class="lg:min-h-screen max-h-screen lg:flex lg:items-center px-12 lg:px-24 xl:px-48 xl:py-14">
+
+        <div class=" bg-white shadow-xl rounded-lg border border-gray-300 px-14 py-3 items-center text-center w-80 ">
+          <div class="flex justify-center">
+           <img v-if="!previewImage" class="h-1/3" src="../assets/avatar.png"/> 
+           <img :src="previewImage" class="uploading-image sm:flex-shrink-0 mx-auto sm:mx-0 h-1/3 rounded-full" />
           </div>
+          
+          <div class="sm:flex sm:items-center"> 
+            <div class=" text-sm">
+              <p class="my-5 text-base text-center"><b>{{name}}</b></p>            
+              <p v-if="!name" class="my-5 text-base text-gray-500 text-center">{{nameDefault}}</p>
+              <p class="my-5 text-left"><b>Telefone: </b> {{tel}}</p>
+              <p class="my-5 text-left"><b>Email: </b>{{Email}}</p>
+              <p class="my-5 text-left"><b>Idade: </b>{{idade}}</p>
+              <p class="my-5 text-left"><b>Setor: </b>{{sectorSelected}}</p>             
+            </div>            
+          </div>
+          <div class="flex justify-end">
+              <img class="w-20" v-if="sectorSelected == 'Relacionamento'" src="../assets/headset.png"/>
+              <img class="w-20" v-if="sectorSelected == 'Tecnologia'" src="../assets/coding.png"/>
+              <img class="w-20" v-if="sectorSelected == 'Juridico'" src="../assets/balance.png"/>
+              <img class="w-20" v-if="sectorSelected == 'Manutencao'" src="../assets/mechanic.png"/>
+            </div>
+          
         </div>
-        <form action="" class="flex w-full mt-8">
-          <input type="text" class="flex-1 w-full text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200">
-          <button class="flex-shrink-0"></button>
-        </form>
       </div>
-    </div>
     </div>
 
     
@@ -70,17 +90,32 @@ export default {
   img:'imageUpload',
   data(){
     return({
-      name: 'Nome',
+      name: '',
+      nameDefault: 'Aqui ficará seu nome',
       tel: '',
       email: '',
       age: '',
-      setor: '',
-      previewImage: '../assets/logo.png',
+      sectorSelected: '',
+      
+      
+      previewImage: null,
+      sectors: [
+        {id:1,name:'Relacionamento'},
+        {id:2,name:'Tecnologia'},
+        {id:3,name:'Juridico'},
+        {id:4,name:'Manutencao'},
+      ]
     })
     
   },
+  created(){
+    // if(this.setor == this.setores.id){
+    //   this.setorName = this.setores.setor;
+    // }
+  },
    methods:{
             uploadImage(e){
+              console.log(this.setorName);
                 const image = e.target.files[0];
                 const reader = new FileReader();
                 reader.readAsDataURL(image);
@@ -89,11 +124,13 @@ export default {
                     console.log(this.previewImage);
                 };
             },
-            // img(){
-            //   return if null ? '../assets/logo.png' : 
-            // }
-
-        },  
+            
+            chooseFiles(){ 
+              document.getElementById("fileUpload").click();
+            }
+        },
+        
+        
   props: {
     msg: String
   }
