@@ -1,57 +1,39 @@
 <template>
   <div class="hello">
-    <!-- <p>{{name}}</p>
-    <p>{{tel}}</p>
-    <p>{{email}}</p>
-    <p>{{age}}</p>
-    
-    <input v-model="name" placeholder="name" />
-    <input v-model="tel" placeholder="tel" />
-    <input v-model="email" placeholder="email" />
-    <input v-model="age" placeholder="age" />
-  
-    <img :src="previewImage" class="uploading-image" />
-    <input type="file" accept="image/jpeg" @change=uploadImage> -->
 
     <div class="grid grid-cols-1 lg:grid-cols-2 ">
-      <div class="bg-blue-600 lg:min-h-screen lg:flex  p-8 sm:p-12 justify-center max-h-screen" >
-        <div class="w-3/4">
-          <h1 class="text-white text-center text-2xl sm:text-5xl mb-2">Crie seu crachá</h1>
-          <p class="text-center text-blue-200 sm:text-lg">Em poucos dias você o receberá em casa</p>
+      <div class="bg-blue-600 min-h-screen lg:flex  p-8 sm:p-12 justify-center max-h-screen" >
+        <div class="lg:w-3/4 sm:h-full">
+          <h1 class="text-white text-center  text-5xl lg:text-5xl mb-2">Crie seu crachá</h1>
+          <p class="text-center text-blue-200 text-2xl sm:text-lg">Em poucos dias você o receberá em casa</p>
 
-          <form action="" class="  mt-8">
-          <input v-model="name" placeholder="Nome" type="text" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
-          <input v-model="tel" placeholder="Telefone" type="number" class="flex-1 h-11 w-full text-center my-4 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
-          <input v-model="Email" placeholder="Email" type="text" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
-          <input v-model="idade" placeholder="idade" type="number" class="flex-1 h-11 w-full my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">          
-          <div class="flex justify-between">
-            <select v-model="sectorSelected" class="w-1/2 h-11 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">            
+          <form action="" class="  h-16 sm:h-11  mt-8">
+          <input v-model="name" placeholder="Nome" type="text" class="flex-1 h-16 sm:h-11 w-full my-8 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
+          <input v-model="tel" placeholder="Telefone" type="number" class="flex-1 h-16 sm:h-11 w-full text-center my-8 sm:my-4 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
+          <input v-model="Email" placeholder="Email" type="text" class="flex-1 h-16 sm:h-11 w-full my-8 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">
+          <input v-model="idade" placeholder="idade" type="number" class="flex-1 h-16 sm:h-11 w-full my-8 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">          
+          <div class="lg:flex lg:justify-between">
+            <select v-model="sectorSelected" class="sm:w-screen lg:w-1/2 h-13 h-16 sm:h-11 my-8 sm:my-4 text-gray-700 bg-gray-200 rounded-md hover:bg-hite border border-gray-200 outline-none">            
               <option v-for="sector in sectors">
                 {{sector.name}}
               </option>
             </select>          
-            <!-- <input id="fileUpload" type="file" accept="image/jpeg" @change=uploadImage >
-            
-            <button v-on:click="chooseFiles()" class="h-10 text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
-              font-semibold rounded-md text-xs px-4 py-1 focus:outline-none"
-              >Pronto!</button> -->
+          
 
-              <label for="upload-file" class="h-10 flex text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
-              font-semibold rounded-md text-xs px-4 align-middle">
-                Escolha sua foto!
+              <label for="upload-file" class="h-16  sm:h-11  sm:my-4 flex align-center text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
+              font-semibold rounded-md text-xs px-4 ">
+                <span>Escolha sua foto!</span>
                 <input type="file" id="upload-file" hidden @change="uploadImage"/>
               </label>
           </div>
 
           
         </form>
-        <!-- <button v-on:click="teste" class="h-10 text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500 
-              font-semibold rounded-md text-xs px-4 py-1 focus:outline-none"
-              >Pronto!</button>  -->
+    
         </div>        
       </div>
 
-      <div class="lg:min-h-screen max-h-screen lg:flex lg:items-center px-12 lg:px-24 xl:px-48 xl:py-14">
+      <div class="lg:min-h-screen max-h-screen flex items-center py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200">
 
         <div class=" bg-white shadow-xl rounded-lg border border-gray-300 px-14 py-3 items-center text-center w-80 ">
           <div class="flex justify-center">
