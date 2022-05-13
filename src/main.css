@@ -1,3 +1,50 @@
 @tailwind base;
+
+.title{
+    @apply text-5xl lg:text-5xl mb-2
+}
+
+.subtitle{
+    @apply text-2xl sm:text-lg
+}
+
+.btn{
+    @apply h-16  sm:h-11  sm:my-4 font-semibold rounded-md text-xs px-4;
+}
+
+.btn-secondary{
+    @apply text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500;
+}
+
+.input{
+    @apply  h-16 sm:h-11 my-8 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md  border border-gray-200 outline-none;
+}
+
+.card{
+    @apply bg-white shadow-xl rounded-lg border border-gray-300 px-14 py-3 items-center text-center w-80 
+}
+
+.avatar{
+    @apply h-1/3 rounded-full;
+}
+
+.card-row{
+    @apply my-5 text-gray-700;
+}
+
+.card-info{
+    @apply text-left;
+}
+.card-mainInfo{
+    @apply text-base text-center;
+}
+
+.card-icon{
+    @apply h-14 absolute right-0 -bottom-2.5;
+}
+
+
+
+
 @tailwind components;
 @tailwind utilities;
