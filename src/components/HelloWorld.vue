@@ -27,27 +27,7 @@
       </div>
 
       <div class="lg:min-h-screen max-h-screen flex items-center py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200">
-        <div class="card">
-          <div class="flex justify-center relative">
-            <img v-if="!previewImage" class="avatar" src="../assets/avatar.png"/> 
-            <img :src="previewImage" class="avatar" />
-            <img class="card-icon" v-if="sectorSelected == 'Relacionamento'" src="../assets/headset.png"/>
-            <img class="card-icon" v-if="sectorSelected == 'Tecnologia'" src="../assets/coding.png"/>
-            <img class="card-icon" v-if="sectorSelected == 'Juridico'" src="../assets/balance.png"/>
-            <img class="card-icon" v-if="sectorSelected == 'Manutencao'" src="../assets/mechanic.png"/>     
-          </div>
-          
-          <div class="sm:flex sm:items-center"> 
-            <div class="text-sm">
-              <p class="card-row card-mainInfo"><b>{{name}}</b></p>            
-              <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
-              <p class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
-              <p class="card-row card-info"><b>Email: </b>{{Email}}</p>
-              <p class="card-row card-info"><b>Idade: </b>{{idade}}</p>              
-              <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>                                     
-            </div>            
-          </div>  
-        </div>
+        <Card :name="name" :tel="tel" :email="email" :age="age" :sectorSelected="sectorSelected" :previewImage="previewImage" />
       </div>
     </div>
 
@@ -57,12 +37,16 @@
 </template>
 
 <script>
+import Card from './Card.vue'
+
 export default {
   img:'imageUpload',
+  components: {
+    Card
+  },
   data(){
     return({
-      name: '',
-      nameDefault: 'Aqui ficará seu nome',
+      name: '',      
       tel: '',
       email: '',
       age: '',
@@ -81,7 +65,7 @@ export default {
   }, 
    methods:{
             uploadImage(e){
-              console.log(this.setorName);
+              
                 const image = e.target.files[0];
                 const reader = new FileReader();
                 reader.readAsDataURL(image);
