@@ -9,19 +9,25 @@
 }
 
 .btn{
-    @apply h-16  sm:h-11  sm:my-4 font-semibold rounded-md text-xs px-4;
+    @apply h-16  my-5 sm:h-11  sm:my-4 font-semibold rounded-md text-xs px-4;
 }
 
 .btn-secondary{
     @apply text-gray-200 bg-red-500 hover:text-red-500 hover:bg-gray-200 border-red-500;
 }
 
-.input{
-    @apply  h-16 sm:h-11 my-8 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md  border border-gray-200 outline-none;
+.btn-primary{
+    @apply text-gray-200 bg-green-600 hover:text-green-600 hover:bg-gray-200 border-red-500
 }
 
+.input{
+    @apply  h-16 sm:h-11 my-5 sm:my-4 text-center text-gray-700 bg-gray-200 rounded-md  border border-gray-200 outline-none  ;
+}
+
+
+
 .card{
-    @apply bg-white shadow-xl rounded-lg border border-gray-300 px-14 py-3 items-center text-center w-80 
+    @apply bg-white shadow-xl rounded-lg border border-gray-300 px-14 py-3 items-center text-center w-80 ;
 }
 
 .avatar{
@@ -43,7 +49,33 @@
     @apply h-14 absolute right-0 -bottom-2.5;
 }
 
-
+.slide-fade-up-enter-active {
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+    position: relative;
+  }
+  
+  .slide-fade-up-leave-active {
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    position: absolute;
+  }
+  
+  .slide-fade-up-enter {
+    opacity: 0;
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+    pointer-events: none;
+  }
+  
+  .slide-fade-up-leave-to {
+    opacity: 0;
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+    pointer-events: none;
+  }
 
 
 @tailwind components;

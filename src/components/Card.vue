@@ -11,7 +11,9 @@
     
     <div class="sm:flex sm:items-center"> 
       <div class="text-sm">
-        <p class="card-row card-mainInfo"><b>{{name}}</b></p>            
+        <transition name="slide-fade-up">
+          <p class="card-row card-mainInfo teste"><b>{{name}}</b></p>
+        </transition>            
         <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
         <p class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
         <p class="card-row card-info"><b>Email: </b>{{Email}}</p>

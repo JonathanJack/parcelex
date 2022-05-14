@@ -21,14 +21,21 @@
               <span>Escolha sua foto!</span>
               <input type="file" id="upload-file" hidden @change="uploadImage"/>
             </label>
+
+            
           </div>          
+          <!-- <button class="btn btn-primary animate-bounce">Pronto!</button> -->
         </form>    
-        </div>        
+        </div>  
+              
+  
+    
       </div>
 
       <div class="lg:min-h-screen max-h-screen flex items-center py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200">
         <Card :name="name" :tel="tel" :email="email" :age="age" :sectorSelected="sectorSelected" :previewImage="previewImage" />
       </div>
+
     </div>
 
     
