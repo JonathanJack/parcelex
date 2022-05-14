@@ -28,20 +28,11 @@ export default {
   data(){
     return({      
       nameDefault: 'Aqui ficará seu nome',
-      name: this.name,
-      tel: this.tel,
-      email: this.email,
-      age: this.age,
-      sectorSelected: this.sectorSelected,
-      previewImage: this.previewImage,                  
+                 
     })
     
   }, 
-   methods:{
-           
-        },
-        
-        
+                   
   props: {
     name: String,
     tel: String,
