@@ -8,9 +8,9 @@
           <p class="text-center text-blue-200 subtitle">Em poucos dias você o receberá em casa</p>
           <form action="" class="  h-16 sm:h-11  mt-8">
           <input v-model="name" placeholder="Nome" type="text" class="input w-full">
-          <input v-model="tel" placeholder="Telefone" type="number" class="input w-full">
-          <input v-model="Email" placeholder="Email" type="text" class="input w-full">
-          <input v-model="idade" placeholder="idade" type="number" class="input w-full">          
+          <input v-model="tel" @keypress="onlyNumber"  placeholder="Telefone" type="text" class="input w-full">
+          <input v-model="email" placeholder="Email" type="text" class="input w-full">
+          <input v-model="age" @keypress="onlyNumber"  placeholder="idade" type="text" class="input w-full" >          
           <div class="lg:flex lg:justify-between">
             <select v-model="sectorSelected" class="w-full lg:w-1/2 input">            
               <option v-for="sector in sectors">
@@ -24,11 +24,9 @@
 
             
           </div>          
-          <!-- <button class="btn btn-primary animate-bounce">Pronto!</button> -->
+          <button v-on:click="finishForm" :disabled="!allFieldsFilled"  class="btn" :class="allFieldsFilled ?'btn-primary' : 'btn-disabled'">Pronto!</button>
         </form>    
-        </div>  
-              
-  
+        </div>                  
     
       </div>
 
@@ -58,6 +56,7 @@ export default {
       email: '',
       age: '',
       sectorSelected: '',
+      allFieldsFilled: false,
       
       
       previewImage: null,
@@ -84,8 +83,35 @@ export default {
             
             chooseFiles(){ 
               document.getElementById("fileUpload").click();
+            },
+          
+
+            CheckFields(){   
+              console.log(this.name.length);           
+              
+              console.log(this.email.length);  
+              console.log(this.age.length);  
+              console.log(this.sectorSelected.length);  
+              
+                this.allFieldsFilled = this.name.length > 0 && this.email.length > 0 && this.sectorSelected.length > 0;
+               console.log();
+                
+            },
+            onlyNumber ($event) {
+              //console.log($event.keyCode); //keyCodes value
+              let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+              if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+                 $event.preventDefault();
+              }
+            },
+            finishForm(){
+              
+              alert('Salvo!');
             }
-        },
+      },
+  updated(){
+    this.CheckFields()
+  },
         
         
   props: {

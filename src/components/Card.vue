@@ -11,13 +11,15 @@
     
     <div class="sm:flex sm:items-center"> 
       <div class="text-sm">
-        <transition name="slide-fade-up">
-          <p class="card-row card-mainInfo teste"><b>{{name}}</b></p>
-        </transition>            
+        <!-- <transition name="slide-fade-up"> -->
+          <!-- <transition-group name="slide-fade-right"> -->
+            <p class="card-row card-mainInfo card-item__focus teste"><b>{{name}}</b></p>
+          <!-- </transition-group>
+        </transition>             -->
         <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
         <p class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
-        <p class="card-row card-info"><b>Email: </b>{{Email}}</p>
-        <p class="card-row card-info"><b>Idade: </b>{{idade}}</p>              
+        <p class="card-row card-info"><b>Email: </b>{{email}}</p>
+        <p class="card-row card-info"><b>Idade: </b>{{age}}</p>              
         <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>                                     
       </div>            
     </div>  
