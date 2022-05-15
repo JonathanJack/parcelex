@@ -19,7 +19,7 @@
               <option v-for="sector in sectors" :key="sector.id" :value="sector.name">{{sector.name}}</option>                              
             </select>                  
             <label for="upload-file" class="btn btn-secondary flex align-center">               
-              <span>Escolha sua foto!</span>
+              <span class="flex items-center">Escolha sua foto!</span>
               <input type="file" id="upload-file" hidden @change="uploadImage"/>
             </label>
 
@@ -93,11 +93,7 @@ export default {
           
 
             CheckFields(){   
-              console.log(this.name.length);           
-              
-              console.log(this.email.length);  
-              console.log(this.age.length);  
-              console.log(this.sectorSelected.length);  
+               
               
                 this.allFieldsFilled = this.name.length > 0 && this.email.length > 0 && this.sectorSelected.length > 0 && this.photoChoosed == true;
                
@@ -116,12 +112,20 @@ export default {
             finishForm(){
               event.preventDefault();
               this.sucessPopup();
+              // this.scrollToElement({behavior: 'smooth'})
               setTimeout(() => {
                 document.location.reload(true);
               }, 7000)
               
-            }
-      },
+            },
+            // scrollToElement(options){
+            //   const el = document.getElementsById('teste');
+            //   console.log(el)
+            //   if (el) {
+            //     el.scrollIntoView(options);
+            //   }
+            // }
+  },
   updated(){
     this.CheckFields()
   },

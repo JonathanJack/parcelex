@@ -17,7 +17,7 @@
           <!-- </transition-group>
         </transition>             -->
         <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
-        <p class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
+        <p id="teste" class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
         <p class="card-row card-info"><b>Email: </b>{{email}}</p>
         <p class="card-row card-info"><b>Idade: </b>{{age}}</p>              
         <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>                                     
