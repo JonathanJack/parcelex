@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+   <Sucess v-if="showSucess"/>
+
 
     <div class="grid grid-cols-1 lg:grid-cols-2 ">
       <div class="bg-blue-600 min-h-screen lg:flex  p-8 sm:p-12 justify-center max-h-screen" >
@@ -8,16 +10,15 @@
           <p class="text-center text-blue-200 subtitle">Em poucos dias você o receberá em casa</p>
           <form action="" class="  h-16 sm:h-11  mt-8">
           <input v-model="name" placeholder="Nome" type="text" class="input w-full">
-          <input v-model="tel" @keypress="onlyNumber"  placeholder="Telefone" type="text" class="input w-full">
+          <input v-model="tel"  @keypress="onlyNumber" maxlength="11"  placeholder="Telefone" type="text" class="input w-full">
           <input v-model="email" placeholder="Email" type="text" class="input w-full">
-          <input v-model="age" @keypress="onlyNumber"  placeholder="idade" type="text" class="input w-full" >          
+          <input v-model="age" @keypress="onlyNumber" maxlength="2" placeholder="idade" type="text" class="input w-full" >          
           <div class="lg:flex lg:justify-between">
-            <select v-model="sectorSelected" class="w-full lg:w-1/2 input">            
-              <option v-for="sector in sectors">
-                {{sector.name}}
-              </option>
+            <select v-model="sectorSelected"  class="w-full lg:w-1/2 input  cursor-pointer">  
+              <option value="" disabled >Setor</option>                         
+              <option v-for="sector in sectors" :key="sector.id" :value="sector.name">{{sector.name}}</option>                              
             </select>                  
-            <label for="upload-file" class="btn btn-secondary flex align-center ">               
+            <label for="upload-file" class="btn btn-secondary flex align-center">               
               <span>Escolha sua foto!</span>
               <input type="file" id="upload-file" hidden @change="uploadImage"/>
             </label>
@@ -43,21 +44,25 @@
 
 <script>
 import Card from './Card.vue'
+import Sucess from './Sucess.vue'
 
 export default {
   img:'imageUpload',
   components: {
-    Card
+    Card,
+    Sucess
+
   },
   data(){
     return({
       name: '',      
       tel: '',
       email: '',
-      age: '',
-      sectorSelected: '',
+      age: '',      
       allFieldsFilled: false,
-      
+      sectorSelected: '',
+      photoChoosed: false,
+      showSucess: false,
       
       previewImage: null,
       sectors: [
@@ -65,7 +70,7 @@ export default {
         {id:2,name:'Tecnologia'},
         {id:3,name:'Juridico'},
         {id:4,name:'Manutencao'},
-      ]
+      ],      
     })
     
   }, 
@@ -79,6 +84,7 @@ export default {
                     this.previewImage = e.target.result;
                     console.log(this.previewImage);
                 };
+                this.photoChoosed = true;
             },
             
             chooseFiles(){ 
@@ -93,20 +99,27 @@ export default {
               console.log(this.age.length);  
               console.log(this.sectorSelected.length);  
               
-                this.allFieldsFilled = this.name.length > 0 && this.email.length > 0 && this.sectorSelected.length > 0;
-               console.log();
+                this.allFieldsFilled = this.name.length > 0 && this.email.length > 0 && this.sectorSelected.length > 0 && this.photoChoosed == true;
+               
                 
             },
             onlyNumber ($event) {
-              //console.log($event.keyCode); //keyCodes value
+              
               let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
-              if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+              if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { 
                  $event.preventDefault();
               }
             },
+            sucessPopup(){
+              this.showSucess = true;
+            },
             finishForm(){
+              event.preventDefault();
+              this.sucessPopup();
+              setTimeout(() => {
+                document.location.reload(true);
+              }, 7000)
               
-              alert('Salvo!');
             }
       },
   updated(){
