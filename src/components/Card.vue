@@ -2,12 +2,12 @@
 <Sucess v-if="sucess"/>
   <div id="card" class="card ">
     <div class="flex justify-center relative">
-      <img v-if="!previewImage" class="avatar" src="../assets/avatar.png"/> 
+      <img v-if="!previewImage" class="avatar" src="../assets/avatar.png" alt=""/> 
       <img :src="previewImage" class="avatar" />
-      <img class="card-icon" v-if="sectorSelected == 'Relacionamento'" src="../assets/headset.png"/>
-      <img class="card-icon" v-if="sectorSelected == 'Tecnologia'" src="../assets/coding.png"/>
-      <img class="card-icon" v-if="sectorSelected == 'Juridico'" src="../assets/balance.png"/>
-      <img class="card-icon" v-if="sectorSelected == 'Manutencao'" src="../assets/mechanic.png"/>     
+      <img class="card-icon" v-if="sectorSelected == 'Relacionamento'" src="../assets/headset.png" alt="Ícone de Headset"/>
+      <img class="card-icon" v-if="sectorSelected == 'Tecnologia'" src="../assets/coding.png" alt="Ícone de computador"/>
+      <img class="card-icon" v-if="sectorSelected == 'Jurídico'" src="../assets/balance.png" alt="ícone de balança"/>
+      <img class="card-icon" v-if="sectorSelected == 'Manutenção'" src="../assets/mechanic.png" alt="Ícone de ferramentas"/>     
     </div>
     
     <div class="sm:flex sm:items-center"> 
