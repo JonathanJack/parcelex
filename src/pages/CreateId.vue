@@ -1,6 +1,6 @@
 <template>
     <div class="grid grid-cols-1 lg:grid-cols-2 ">
-      <div class="bg-blue-600 min-h-screen lg:flex  p-8 sm:p-12 justify-center max-h-screen" >
+      <div class="bg-blue-600 min-h-screen h-fit lg:flex  px-8 pb-[40rem] sm:p-12 justify-center" >
         <div class="lg:w-3/4 sm:h-full">
           <header>
             <h1 class="text-white text-center  title">Crie seu crachá</h1>
@@ -26,7 +26,7 @@
         </div>                      
       </div>
 
-      <div class="h-full max-h-screen flex  py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200 relative">
+      <div class=" flex  py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200 relative">
         <Card :name="name" :tel="tel" :email="email" :age="age" :sectorSelected="sectorSelected" :previewImage="previewImage" :sucess="showSucess" />
       </div>
     </div>      
