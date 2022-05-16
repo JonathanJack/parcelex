@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-   <Sucess v-if="showSucess"/>
+   
 
 
     <div class="grid grid-cols-1 lg:grid-cols-2 ">
@@ -18,21 +18,19 @@
               <option value="" disabled >Setor</option>                         
               <option v-for="sector in sectors" :key="sector.id" :value="sector.name">{{sector.name}}</option>                              
             </select>                  
-            <label for="upload-file" class="btn btn-secondary flex align-center">               
-              <span class="flex items-center">Escolha sua foto!</span>
+            <label for="upload-file" class="btn btn-secondary">               
+              <span class="flex items-center ">Escolha sua foto</span>
               <input type="file" id="upload-file" hidden @change="uploadImage"/>
-            </label>
-
-            
-          </div>          
-          <button v-on:click="finishForm" :disabled="!allFieldsFilled"  class="btn" :class="allFieldsFilled ?'btn-primary' : 'btn-disabled'">Pronto!</button>
+            </label>            
+          </div>                    
+          <button @click.stop.prevent="finishForm" :disabled="!allFieldsFilled"  class="btn w-full sm:w-1/2" :class="allFieldsFilled ?'btn-primary' : 'btn-disabled'">Pronto!</button>
         </form>    
         </div>                  
     
       </div>
 
-      <div class="lg:min-h-screen max-h-screen flex items-center py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200">
-        <Card :name="name" :tel="tel" :email="email" :age="age" :sectorSelected="sectorSelected" :previewImage="previewImage" />
+      <div class="h-full max-h-screen flex  py-5 px-12 lg:px-24 xl:px-48 xl:py-14 bg-slate-200 relative">
+        <Card :name="name" :tel="tel" :email="email" :age="age" :sectorSelected="sectorSelected" :previewImage="previewImage" :sucess="showSucess" />
       </div>
 
     </div>
@@ -44,13 +42,13 @@
 
 <script>
 import Card from './Card.vue'
-import Sucess from './Sucess.vue'
+
 
 export default {
   img:'imageUpload',
   components: {
     Card,
-    Sucess
+    
 
   },
   data(){
@@ -75,8 +73,10 @@ export default {
     
   }, 
    methods:{
-            uploadImage(e){
-              
+      chooseFiles(){ 
+              document.getElementById("fileUpload").click();
+            },
+            uploadImage(e){              
                 const image = e.target.files[0];
                 const reader = new FileReader();
                 reader.readAsDataURL(image);
@@ -85,55 +85,40 @@ export default {
                     console.log(this.previewImage);
                 };
                 this.photoChoosed = true;
+            },                      
+            CheckFieldsFilled(){                                
+                this.allFieldsFilled = 
+                  this.name.length > 0 && 
+                  this.email.length > 0 && 
+                  this.sectorSelected.length > 0 && 
+                  this.age > 0 &&
+                  this.photoChoosed == true;                               
             },
-            
-            chooseFiles(){ 
-              document.getElementById("fileUpload").click();
-            },
-          
-
-            CheckFields(){   
-               
-              
-                this.allFieldsFilled = this.name.length > 0 && this.email.length > 0 && this.sectorSelected.length > 0 && this.photoChoosed == true;
-               
-                
-            },
-            onlyNumber ($event) {
-              
+            onlyNumber ($event) {              
               let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
               if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { 
                  $event.preventDefault();
               }
             },
-            sucessPopup(){
-              this.showSucess = true;
-            },
-            finishForm(){
-              event.preventDefault();
-              this.sucessPopup();
-              // this.scrollToElement({behavior: 'smooth'})
+           
+            finishForm(){              
+              this.showSucess = true;               
+              this.scrollToElement({behavior: 'smooth'})              
               setTimeout(() => {
                 document.location.reload(true);
-              }, 7000)
-              
+              }, 7000)                            
             },
-            // scrollToElement(options){
-            //   const el = document.getElementsById('teste');
-            //   console.log(el)
-            //   if (el) {
-            //     el.scrollIntoView(options);
-            //   }
-            // }
+            scrollToElement(options){
+              const el = document.getElementById('card');
+              console.log(el)
+              if (el) {
+                el.scrollIntoView(options);
+              }
+            }
   },
   updated(){
-    this.CheckFields()
-  },
-        
-        
-  props: {
-    msg: String
-  }
+    this.CheckFieldsFilled()
+  },                
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>  
-  <div class="card">
+<Sucess v-if="sucess"/>
+  <div id="card" class="card ">
     <div class="flex justify-center relative">
       <img v-if="!previewImage" class="avatar" src="../assets/avatar.png"/> 
       <img :src="previewImage" class="avatar" />
@@ -10,14 +11,10 @@
     </div>
     
     <div class="sm:flex sm:items-center"> 
-      <div class="text-sm">
-        <!-- <transition name="slide-fade-up"> -->
-          <!-- <transition-group name="slide-fade-right"> -->
-            <p class="card-row card-mainInfo card-item__focus teste"><b>{{name}}</b></p>
-          <!-- </transition-group>
-        </transition>             -->
+      <div class="text-sm">        
+        <p class="card-row card-mainInfo card-item__focus"><b>{{name}}</b></p>        
         <p v-if="!name" class="card-row card-mainInfo text-gray-500 ">{{nameDefault}}</p>
-        <p id="teste" class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
+        <p id="" class="card-row card-info"><b>Telefone: </b> {{tel}}</p>
         <p class="card-row card-info"><b>Email: </b>{{email}}</p>
         <p class="card-row card-info"><b>Idade: </b>{{age}}</p>              
         <p class="card-row card-info"><b>Setor: </b>{{sectorSelected}}</p>                                     
@@ -27,12 +24,16 @@
 </template>
 
 <script>
+import Sucess from './Sucess.vue'
+
 export default {
   img:'imageUpload',
+  components:{
+    Sucess
+  },
   data(){
     return({      
-      nameDefault: 'Aqui ficará seu nome',
-                 
+      nameDefault: 'Aqui ficará seu nome',                 
     })
     
   }, 
@@ -43,7 +44,8 @@ export default {
     email: String,
     age: String,
     sectorSelected: String,
-    previewImage: String
+    previewImage: String,
+    sucess: Boolean
   }
 }
 </script>
