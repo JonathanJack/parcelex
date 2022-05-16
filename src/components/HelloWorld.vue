@@ -11,7 +11,7 @@
           <form action="" class="  h-16 sm:h-11  mt-8">
           <input v-model="name" placeholder="Nome" type="text" class="input w-full">
           <input v-model="tel"  @keypress="onlyNumber" maxlength="11"  placeholder="Telefone" type="text" class="input w-full">
-          <input v-model="email" placeholder="Email" type="text" class="input w-full">
+          <input v-model="email" id="email" placeholder="Email" type="text" class="input w-full" :class="showEmailErro() ? 'input-error':'input'">
           <input v-model="age" @keypress="onlyNumber" maxlength="2" placeholder="idade" type="text" class="input w-full" >          
           <div class="lg:flex lg:justify-between">
             <select v-model="sectorSelected"  class="w-full lg:w-1/2 input  cursor-pointer">  
@@ -85,11 +85,20 @@ export default {
                     console.log(this.previewImage);
                 };
                 this.photoChoosed = true;
-            },                      
+            },         
+            validEmail: function (email) {
+              var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              return re.test(email);
+            },  
+            showEmailErro(){
+              const inputEmail = document.getElementById('email');              
+              if(this.email.length > 0) return !this.validEmail(this.email)               
+            },     
+             
             CheckFieldsFilled(){                                
                 this.allFieldsFilled = 
                   this.name.length > 0 && 
-                  this.email.length > 0 && 
+                  this.validEmail(this.email) &&
                   this.sectorSelected.length > 0 && 
                   this.age > 0 &&
                   this.photoChoosed == true;                               
