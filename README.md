@@ -8,7 +8,7 @@ Check it: https://tranquil-gecko-323007.netlify.app/
 
 ## Next feature:
 Send Card for email
-choose Dark Mode
+
 
 # Vue 3 + Vite
 
